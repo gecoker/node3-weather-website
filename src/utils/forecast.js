@@ -13,7 +13,14 @@ const forecast = (lat, long, callback) => {
             const weatherToday = body.daily.data[0]
             const temperature = body.currently.temperature
             const precipProbability = body.currently.precipProbability
-            const msg = `${weatherToday.summary} It is currently ${temperature} degrees out. There is a ${precipProbability}% chance of rain.`
+            const humidity = (body.currently.humidity * 100) + '%'
+            const tempHigh = weatherToday.temperatureHigh
+            const tempLow = weatherToday.temperatureLow
+            const tempHighTime = new Date(weatherToday.temperatureHighTime)
+            const tempLowTime = new Date(weatherToday.temperatureLowTime)
+            const msg1 = `${weatherToday.summary} It is currently ${temperature} degrees out. There is a ${precipProbability}% chance of rain.`
+            const msg2 = `The humidity is ${humidity}. Today's high, ${tempHigh} degrees, will be reached at ${tempHighTime}. Today's low, ${tempLow} degrees, will be reached at ${tempLowTime}.`;
+            const msg = msg1 + ' ' + msg2
             callback(undefined, msg)
         }
     })
