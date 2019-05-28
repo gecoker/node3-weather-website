@@ -1,5 +1,3 @@
-console.log('Client side js loading, yo!')
-
 const address = 'Gold Beach, OR'
 
 function fetchForecast(address) {
